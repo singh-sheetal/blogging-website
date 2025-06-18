@@ -6,7 +6,13 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:prod": "ng build --configuration production",
+    "firebase:login": "npx firebase-tools login",
+    "firebase:init": "npx firebase-tools init hosting",
+    "firebase:deploy": "npx firebase-tools deploy",
+    "deploy": "npm run build:prod && npx firebase-tools deploy",
+    "deploy:init": "npm run firebase:login && npm run firebase:init"
   },
   "private": true,
   "dependencies": {
