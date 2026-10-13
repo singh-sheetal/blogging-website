@@ -1,0 +1,19 @@
+<footer>
+  <app-character />
+  <div class="dark">
+    <div class="inner">
+      <div class="about">
+        <p class="title">{{ site.name }} <span>· {{ site.tagline }}</span></p>
+        <p class="note">Thanks for reading. Come back soon, there is always another story waiting.</p>
+      </div>
+      <nav aria-label="Footer">
+        <a routerLink="/" fragment="stories">Stories</a>
+        <a routerLink="/" fragment="about">About</a>
+        @if (site.photographyUrl) { <a [href]="site.photographyUrl">Photography ↗</a> }
+        <a [href]="site.instagram">Instagram</a>
+        <a [href]="site.linkedin">LinkedIn</a>
+      </nav>
+    </div>
+    <p class="copy">© {{ year }} {{ site.name }}</p>
+  </div>
+</footer>

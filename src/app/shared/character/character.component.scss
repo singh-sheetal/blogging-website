@@ -1,0 +1,74 @@
+.cloud{position:absolute;left:105%;height:auto;animation:drift linear infinite}
+.c1{top:18px;width:120px;animation-duration:48s;animation-delay:-14s}
+.c2{top:70px;width:84px;animation-duration:34s;animation-delay:-4s}
+.c3{top:8px;width:96px;animation-duration:62s;animation-delay:-40s}
+.plane{position:absolute;top:44px;left:-80px;width:62px;height:auto;animation:fly 20s linear infinite;animation-delay:-8s}
+.bubble{position:relative;display:grid;font:700 14px/1.3 'Nunito Sans',sans-serif;background:#fff;border:2px solid #23284B;border-radius:16px;padding:12px 18px;color:#23284B}
+.bubble::after{content:"";position:absolute;right:-9px;top:50%;width:14px;height:14px;background:#fff;border-right:2px solid #23284B;border-top:2px solid #23284B;transform:translateY(-50%) rotate(45deg)}
+.bubble{animation:bub 8s ease-in-out infinite}
+.msg{grid-area:1/1;white-space:nowrap;opacity:0}
+.mA{animation:mA 8s ease-in-out infinite}
+.mB{animation:mB 8s ease-in-out infinite}
+.mC{animation:mC 8s ease-in-out infinite}
+.mE{animation:mE 8s ease-in-out infinite}
+.mD{animation:mD 8s ease-in-out infinite}
+.eye,.squint{transform-box:fill-box;transform-origin:center}
+.eye{animation:blink 4.4s ease-in-out infinite}
+.squint{animation:squint 8s ease-in-out infinite}
+.look{animation:pupils 8s ease-in-out infinite}
+.head{animation:headlook 8s ease-in-out infinite}
+.tail{animation:tail 8s ease-in-out infinite}
+.cam{transform:translateY(30px);animation:cam 8s ease-in-out infinite}
+.flash{opacity:0;animation:flash 8s ease-out infinite}
+.photo{opacity:0;animation:photo 8s ease-in-out infinite}
+.bob{animation:bob 2.8s ease-in-out infinite}
+.duck{animation:duck 8s ease-in-out infinite}
+.charbox:active .hopper,.charbox:hover .hopper{animation:hop .6s ease-out}
+@keyframes rise{0%{transform:translateY(112%)}62%{transform:translateY(-7%)}82%{transform:translateY(3%)}100%{transform:translateY(0)}}
+@keyframes hello{from{opacity:0;transform:translateY(12px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes duck{0%,91%{transform:translateY(0)}94%,96%{transform:translateY(240px)}99%{transform:translateY(-9px)}100%{transform:translateY(0)}}
+@keyframes blink{0%,90%,100%{transform:scaleY(1)}94%{transform:scaleY(.08)}}
+@keyframes squint{0%,15%{transform:scaleY(1)}17%,26%{transform:scaleY(.55)}28%,54%{transform:scaleY(1)}56%,65%{transform:scaleY(.55)}67%,100%{transform:scaleY(1)}}
+@keyframes pupils{0%{transform:translate(0,0)}5%,12%{transform:translate(-3px,0)}16%,27%{transform:translate(0,0)}34%,48%{transform:translate(0,3px)}54%,66%{transform:translate(3px,0)}72%,100%{transform:translate(0,0)}}
+@keyframes headlook{0%{transform:rotate(0deg) translate(0,0)}5%,12%{transform:rotate(-5deg) translate(-2px,0)}16%,27%{transform:rotate(-2deg) translate(0,0)}34%,48%{transform:rotate(3deg) translate(0,2px)}54%,60%{transform:rotate(6deg) translate(2px,0)}66%{transform:rotate(4deg) translate(1px,0)}72%,100%{transform:rotate(0deg) translate(0,0)}}
+@keyframes tail{0%{transform:rotate(0deg)}5%,12%{transform:rotate(9deg)}16%,27%{transform:rotate(-2deg)}34%,48%{transform:rotate(-7deg)}54%{transform:rotate(11deg)}66%{transform:rotate(7deg)}72%{transform:rotate(-4deg)}80%{transform:rotate(3deg)}100%{transform:rotate(0deg)}}
+@keyframes cam{0%,10%{transform:translateY(30px)}16%,20%{transform:translateY(0)}21%{transform:translateY(3px)}22.5%,27%{transform:translateY(0)}31%,50%{transform:translateY(30px)}55%,60%{transform:translateY(0)}61%{transform:translateY(3px)}62.5%,66%{transform:translateY(0)}70%,100%{transform:translateY(30px)}}
+@keyframes flash{0%,19.5%{opacity:0;transform:scale(.3)}21%{opacity:1;transform:scale(1)}25%{opacity:0;transform:scale(1.5)}25.1%,59.5%{opacity:0;transform:scale(.3)}61%{opacity:1;transform:scale(1)}65%{opacity:0;transform:scale(1.5)}100%{opacity:0;transform:scale(.3)}}
+@keyframes photo{0%,29%{opacity:0;transform:translate(0,14px) scale(.5) rotate(0deg)}33%{opacity:1;transform:translate(0,0) scale(1) rotate(0deg)}47%{opacity:1;transform:translate(34px,-44px) scale(1) rotate(12deg)}51%{opacity:0;transform:translate(38px,-56px) scale(.9) rotate(14deg)}51.1%,68%{opacity:0;transform:translate(0,14px) scale(.5) rotate(0deg)}71%{opacity:1;transform:translate(0,0) scale(1) rotate(0deg)}86%{opacity:1;transform:translate(-36px,-46px) scale(1) rotate(-12deg)}90%{opacity:0;transform:translate(-40px,-58px) scale(.9) rotate(-14deg)}100%{opacity:0;transform:translate(0,14px) scale(.5) rotate(0deg)}}
+@keyframes hop{0%{transform:translateY(0)}35%{transform:translateY(-16px)}70%{transform:translateY(0)}85%{transform:translateY(-5px)}100%{transform:translateY(0)}}
+@keyframes mA{0%,19%{opacity:0}20.5%,27%{opacity:1}28.5%,59%{opacity:0}60.5%,67%{opacity:1}68.5%,100%{opacity:0}}
+@keyframes mB{0%,9%{opacity:0}10.5%,18%{opacity:1}19.5%,52%{opacity:0}53.5%,58%{opacity:1}59.5%,100%{opacity:0}}
+@keyframes mC{0%,34%{opacity:0}35.5%,48%{opacity:1}49.5%,100%{opacity:0}}
+@keyframes mE{0%,71%{opacity:0}72.5%,85%{opacity:1}86.5%,100%{opacity:0}}
+@keyframes mD{0%,7%{opacity:1}8.5%,86%{opacity:0}87.5%,100%{opacity:1}}
+@keyframes bub{0%,27.5%{opacity:1}28.8%,34.2%{opacity:0}35.5%,48.5%{opacity:1}49.8%,52.8%{opacity:0}53.5%,67.5%{opacity:1}68.8%,71.8%{opacity:0}72.5%,100%{opacity:1}}
+@keyframes drift{from{left:105%}to{left:-20%}}
+@keyframes fly{from{left:-80px;transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-14px) rotate(-10deg)}to{left:105%;transform:translateY(6px) rotate(-4deg)}}
+@supports (animation-timeline: view()){
+.peek{animation:rise linear both;animation-timeline:view();animation-range:entry 5% entry 100%}
+.bubblewrap{animation:hello linear both;animation-timeline:view();animation-range:entry 55% entry 100%}
+}
+@media (prefers-reduced-motion: reduce){
+.bubble,.peek,.bubblewrap,.eye,.squint,.look,.head,.tail,.cam,.flash,.photo,.bob,.duck,.cloud,.plane,.mA,.mB,.mC,.mE,.mD,.charbox:hover .hopper{animation:none!important}
+.mD{opacity:1}
+.plane{display:none}
+.c1{left:12%}.c2{left:48%}.c3{left:76%}
+}
+
+:host{display:block}
+.scene{position:relative;height:190px;overflow:hidden;background:linear-gradient(var(--paper),var(--mist))}
+.hills{position:absolute;left:0;right:0;bottom:0;width:100%;height:64px;display:block}
+.hills path{fill:var(--accent)}
+.accent-fill{fill:var(--accent)}
+.accent-stroke{stroke:var(--accent)}
+.charbox{position:relative;max-width:1080px;height:100%;margin:0 auto;display:flex;justify-content:flex-end;align-items:flex-end;gap:22px;padding:0 70px 0 40px;box-sizing:border-box}
+.bubblewrap{align-self:center;margin-bottom:24px}
+.peek{width:190px;height:190px;display:block;flex:none;margin-bottom:-8px;overflow:visible}
+@media (max-width:640px){
+.scene{height:170px}
+.charbox{max-width:none;gap:12px;padding:0 22px 0 16px}
+.peek{width:150px;height:150px}
+.bubblewrap{margin-bottom:20px}
+.bubble{font-size:13px;padding:10px 14px}
+}
