@@ -1,15 +1,7 @@
 import { Routes } from '@angular/router';
-import { BlogListComponent } from './components/blog-list/blog-list.component';
-import { BlogDetailComponent } from './components/blog-detail/blog-detail.component';
 
 export const routes: Routes = [
-  { path: '', component: BlogListComponent },
-  { path: 'blog/:id', component: BlogDetailComponent },
-  { path: '**', redirectTo: '' } // fallback
+  { path: '', title: 'Sheetal Singh · Travel Stories', loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent) },
+  { path: 'blog/:id', loadComponent: () => import('./pages/story/story.component').then((m) => m.StoryComponent) },
+  { path: '**', redirectTo: '' },
 ];
-
-// @NgModule({
-//   imports: [RouterModule.forRoot(routes)],
-//   exports: [RouterModule]
-// })
-// export class AppRoutingModule {}

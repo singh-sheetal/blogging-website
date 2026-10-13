@@ -1,0 +1,16 @@
+.dark { background: var(--ink); color: var(--paper); }
+.inner { max-width: 1080px; margin: 0 auto; padding: 48px 40px 36px; display: flex; flex-wrap: wrap; gap: 32px 64px; justify-content: space-between; }
+.about { flex: 1 1 320px; }
+.title { margin: 0 0 12px; font: 500 28px/1.2 var(--serif); }
+.title span { font-weight: 300; opacity: 0.8; }
+.note { margin: 0; font-size: 17px; line-height: 1.6; max-width: 380px; opacity: 0.88; }
+nav { display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: flex-start; font: 700 13px/1 var(--ui); letter-spacing: 0.08em; text-transform: uppercase; }
+nav a { padding: 8px 0; border-bottom: 2px solid var(--accent); }
+.copy { max-width: 1080px; margin: 0 auto; padding: 0 40px 32px; font: 600 13px/1 var(--ui); opacity: 0.7; }
+@media (max-width: 640px) {
+  .inner { padding: 40px 20px 28px; }
+  .title { font-size: 24px; }
+  nav { gap: 4px 22px; font-size: 12px; }
+  nav a { padding: 12px 0; }
+  .copy { padding: 0 20px 28px; font-size: 12px; }
+}

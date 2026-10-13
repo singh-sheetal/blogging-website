@@ -1,0 +1,59 @@
+<div class="progress-track" aria-hidden="true"><div class="progress"></div></div>
+<app-site-header />
+<main>
+  <a class="back" routerLink="/" fragment="stories">← All stories</a>
+
+  @switch (view()) {
+    @case ('loading') { <p class="status" role="status">Loading story…</p> }
+    @case ('error') {
+      <div class="status" role="alert">
+        <p>This story didn’t load just now.</p>
+        <button class="back" type="button" (click)="load()">Try again</button>
+      </div>
+    }
+    @case ('missing') {
+      <div class="status">
+        <p>I couldn’t find that story. <a class="ilink" routerLink="/">Browse all stories</a>.</p>
+      </div>
+    }
+    @case ('ready') {
+      @if (post(); as p) {
+        <article>
+          <header>
+            <p class="meta">{{ monthYear(p.published) }} &nbsp;·&nbsp; {{ minutes() }} min read &nbsp;·&nbsp; By {{ p.author }}</p>
+            <h1><span class="mark">{{ p.title }}</span></h1>
+          </header>
+          @if (p.quote) {
+            <blockquote>
+              <span class="bq" aria-hidden="true">“</span>
+              <p>{{ p.quote }}</p>
+            </blockquote>
+          }
+          <div class="story" [innerHTML]="html()"></div>
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        </article>
+
+        <section class="more" aria-label="More stories">
+          <p class="eyebrow">Keep wandering</p>
+          <div class="cards">
+            @if (older(); as o) {
+              <a class="card" [routerLink]="['/blog', o.id]">
+                <p class="eyebrow">← Older · {{ monthYearShort(o.published) }}</p>
+                <h2><span class="hl">{{ o.title }}</span></h2>
+                @if (o.quote) { <p class="q">{{ o.quote }}</p> }
+              </a>
+            }
+            @if (newer(); as n) {
+              <a class="card" [routerLink]="['/blog', n.id]">
+                <p class="eyebrow">Newer → {{ monthYearShort(n.published) }}</p>
+                <h2><span class="hl">{{ n.title }}</span></h2>
+                @if (n.quote) { <p class="q">{{ n.quote }}</p> }
+              </a>
+            }
+          </div>
+          <p class="browse">Want something different? <a class="ilink" routerLink="/" fragment="stories">Browse all stories</a>.</p>
+        </section>
+      }
+    }
+  }
+</main>

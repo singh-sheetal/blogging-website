@@ -1,0 +1,13 @@
+<header>
+  <a class="brand" routerLink="/" aria-label="Sheetal Singh · Travel Stories, home">
+    <span class="badge" aria-hidden="true">S</span>
+    <span class="name">{{ site.name }}<span class="tag"> · {{ site.tagline }}</span></span>
+  </a>
+  <nav aria-label="Main">
+    <a class="nav" routerLink="/" fragment="stories">Stories</a>
+    <a class="nav" routerLink="/" fragment="about">About</a>
+    @if (site.photographyUrl) {
+      <a class="nav" [href]="site.photographyUrl">Photography ↗</a>
+    }
+  </nav>
+</header>

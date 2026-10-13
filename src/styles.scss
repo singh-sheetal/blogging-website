@@ -1,1 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --paper: #f5faf9;
+  --ink: #23284b;
+  --muted: #5c6385;
+  --quote: #4a5175;
+  --coral: #ff8a6b;
+  --peach: #ffd8c9;
+  --lilac: #e4dbfb;
+  --accent: #8fdcd0;
+  --mist: #dcf1ec;
+  --line: #d5e4e1;
+  --dots: #8c9ab5;
+  --serif: 'Fraunces', Georgia, serif;
+  --body: 'Literata', Georgia, serif;
+  --ui: 'Nunito Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+img, svg { max-width: 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* Shared "marker highlight" that grows on hover */
+.hl {
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-size: 0% 42%;
+  background-position: 0 92%;
+  transition: background-size 0.28s ease;
+  padding: 0 4px;
+  margin: 0 -4px;
+}
