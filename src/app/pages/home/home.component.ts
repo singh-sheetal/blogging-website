@@ -5,6 +5,7 @@ import { Post } from '../../core/post.model';
 import { PostService } from '../../core/post.service';
 import { SITE } from '../../core/site.config';
 import { monthShort, monthYear, yearShort } from '../../core/text';
+import { BrokenImages } from '../../core/broken-images';
 import { SiteHeaderComponent } from '../../shared/site-header/site-header.component';
 
 @Component({
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
 
+  protected readonly images = inject(BrokenImages);
   protected readonly site = SITE;
   protected readonly posts = signal<Post[]>([]);
   protected readonly loading = signal(true);

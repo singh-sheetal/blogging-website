@@ -14,6 +14,8 @@ header { padding: 48px 0 36px; }
 .meta { margin: 0 0 24px; font: 800 12px/1.4 var(--ui); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 h1 { margin: 0; font: 300 clamp(36px, 7vw, 68px)/1.3 var(--serif); letter-spacing: -0.01em; overflow-wrap: anywhere; }
 .mark { box-decoration-break: clone; -webkit-box-decoration-break: clone; background-image: linear-gradient(var(--accent), var(--accent)); background-repeat: no-repeat; background-size: 100% 40%; background-position: 0 92%; padding: 0 6px; margin: 0 -6px; }
+.hero { margin: 0 0 40px; }
+.hero img { display: block; width: 100%; height: auto; max-height: 640px; object-fit: cover; border-radius: 28px; border: 1px solid var(--line); background: var(--mist); }
 blockquote { margin: 0 0 40px; padding: 0 0 36px; border-bottom: 1px dotted var(--dots); display: flex; gap: 20px; align-items: flex-start; }
 .bq { flex: none; font: 600 120px/0.75 var(--serif); color: var(--coral); height: 60px; }
 blockquote p { margin: 0; font: italic 300 clamp(22px, 3vw, 28px)/1.4 var(--serif); }

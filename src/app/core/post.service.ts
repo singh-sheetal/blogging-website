@@ -32,6 +32,7 @@ export class PostService {
         title: String(data['title'] ?? 'Untitled'),
         content: String(data['content'] ?? ''),
         quote: String(data['quote'] ?? ''),
+        image: String(data['image'] ?? ''),
         author: String(data['author'] ?? 'Sheetal Singh'),
         published: raw instanceof Timestamp ? raw.toDate() : new Date(raw),
       };

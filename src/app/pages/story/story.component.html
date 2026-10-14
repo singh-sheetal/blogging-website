@@ -23,6 +23,11 @@
             <p class="meta">{{ monthYear(p.published) }} &nbsp;·&nbsp; {{ minutes() }} min read &nbsp;·&nbsp; By {{ p.author }}</p>
             <h1><span class="mark">{{ p.title }}</span></h1>
           </header>
+          @if (p.image && !images.isBroken(p.image)) {
+            <figure class="hero">
+              <img [src]="p.image" [alt]="p.title" width="1200" height="800" fetchpriority="high" (error)="images.mark(p.image)" />
+            </figure>
+          }
           @if (p.quote) {
             <blockquote>
               <span class="bq" aria-hidden="true">“</span>
