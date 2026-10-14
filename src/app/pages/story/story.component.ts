@@ -5,6 +5,7 @@ import { Post } from '../../core/post.model';
 import { PostService } from '../../core/post.service';
 import { SITE } from '../../core/site.config';
 import { monthYear, monthYearShort, readingMinutes, toHtml } from '../../core/text';
+import { BrokenImages } from '../../core/broken-images';
 import { SiteHeaderComponent } from '../../shared/site-header/site-header.component';
 
 @Component({
@@ -16,6 +17,7 @@ import { SiteHeaderComponent } from '../../shared/site-header/site-header.compon
 })
 export class StoryComponent {
   private readonly postService = inject(PostService);
+  protected readonly images = inject(BrokenImages);
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
 
@@ -47,6 +49,8 @@ export class StoryComponent {
       this.meta.updateTag({ property: 'og:title', content: p.title });
       this.meta.updateTag({ property: 'og:description', content: desc });
       this.meta.updateTag({ property: 'og:type', content: 'article' });
+      if (p.image) this.meta.updateTag({ property: 'og:image', content: p.image });
+      else this.meta.removeTag("property='og:image'");
     });
   }
 

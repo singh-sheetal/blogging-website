@@ -46,6 +46,9 @@
       <section class="wrap latest">
         <p class="eyebrow">Latest story</p>
         <a class="feature" [routerLink]="['/blog', p.id]">
+          @if (p.image && !images.isBroken(p.image)) {
+            <img class="cover" [src]="p.image" alt="" width="1000" height="500" fetchpriority="high" (error)="images.mark(p.image)" />
+          }
           <span class="bigquote" aria-hidden="true">“</span>
           @if (p.quote) { <p class="fq">{{ p.quote }}</p> }
           <p class="eyebrow">{{ monthYear(p.published) }}</p>
@@ -74,6 +77,9 @@
                   <h4><span class="hl">{{ p.title }}</span></h4>
                   @if (p.quote) { <p>{{ p.quote }}</p> }
                 </div>
+                @if (p.image && !images.isBroken(p.image)) {
+                  <img class="thumb" [src]="p.image" alt="" width="160" height="120" loading="lazy" decoding="async" (error)="images.mark(p.image)" />
+                }
               </a>
             }
           </div>

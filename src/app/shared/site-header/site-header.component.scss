@@ -1,6 +1,5 @@
 header { max-width: 1080px; margin: 0 auto; padding: 28px 40px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between; }
 .brand { display: flex; align-items: center; gap: 12px; }
-.badge { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); border: 2px solid var(--ink); display: flex; align-items: center; justify-content: center; font: 600 20px/1 var(--serif); }
 .name { font: 600 22px/1.1 var(--serif); }
 .tag { font-weight: 300; color: var(--muted); }
 nav { display: flex; flex-wrap: wrap; gap: 4px; }
