@@ -1,4 +1,4 @@
-import { monthShort, readingMinutes, toHtml, yearShort } from './text';
+import { monthShort, readingMinutes, summary, toHtml, yearShort } from './text';
 
 describe('text helpers', () => {
   it('formats stamp labels', () => {
@@ -27,5 +27,17 @@ describe('text helpers', () => {
 
   it('handles empty content', () => {
     expect(toHtml('  ')).toBe('');
+  });
+});
+
+describe('summary', () => {
+  it('strips markup and cuts at a word boundary', () => {
+    const out = summary('<p>' + 'word '.repeat(60) + '</p>', 50);
+    expect(out.endsWith('…')).toBeTrue();
+    expect(out.length).toBeLessThanOrEqual(51);
+    expect(out).not.toContain('<');
+  });
+  it('returns short text unchanged', () => {
+    expect(summary('<p>Hello   there</p>')).toBe('Hello there');
   });
 });

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
 import { Post } from '../../core/post.model';
 import { PostService } from '../../core/post.service';
+import { SeoService } from '../../core/seo.service';
 import { SITE } from '../../core/site.config';
 import { monthShort, monthYear, yearShort } from '../../core/text';
 import { BrokenImages } from '../../core/broken-images';
@@ -17,13 +17,12 @@ import { SiteHeaderComponent } from '../../shared/site-header/site-header.compon
 })
 export class HomeComponent implements OnInit {
   private readonly postService = inject(PostService);
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+  private readonly seo = inject(SeoService);
 
   protected readonly images = inject(BrokenImages);
   protected readonly site = SITE;
-  protected readonly posts = signal<Post[]>([]);
-  protected readonly loading = signal(true);
+  protected readonly posts = signal<Post[]>(this.postService.snapshot() ?? []);
+  protected readonly loading = signal(this.postService.snapshot() === null);
   protected readonly error = signal(false);
   protected readonly latest = computed(() => this.posts()[0]);
   protected readonly years = computed(() => {
@@ -40,15 +39,12 @@ export class HomeComponent implements OnInit {
   protected readonly monthYear = monthYear;
 
   ngOnInit(): void {
-    this.title.setTitle(`${SITE.name} · ${SITE.tagline}`);
-    this.meta.updateTag({ name: 'description', content: SITE.description });
-    this.meta.updateTag({ property: 'og:title', content: `${SITE.name} · ${SITE.tagline}` });
-    this.meta.updateTag({ property: 'og:description', content: SITE.description });
+    this.seo.set({ title: `${SITE.name} · ${SITE.tagline}`, description: SITE.description, path: '/' });
     void this.load();
   }
 
   protected async load(): Promise<void> {
-    this.loading.set(true);
+    this.loading.set(this.postService.snapshot() === null);
     this.error.set(false);
     try {
       this.posts.set(await this.postService.getPosts());

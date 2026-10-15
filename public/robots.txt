@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sheetal-blog.firebaseapp.com/sitemap.xml
