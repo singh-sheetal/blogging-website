@@ -44,3 +44,11 @@ export function toHtml(content: string): string {
   }
   return blocks.map((b) => `<p>${escapeHtml(b)}</p>`).join('');
 }
+
+/** Plain-text summary of post content (markup removed), cut at a word boundary, for meta descriptions. */
+export function summary(content: string, max = 155): string {
+  const text = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max).replace(/\s+\S*$/, '');
+  return `${cut}…`;
+}
