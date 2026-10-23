@@ -13,11 +13,17 @@ const stories = existsSync(blogDir)
 if (stories.length === 0) throw new Error(`No prerendered stories found in ${blogDir}; refusing to write an empty sitemap.`);
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-const entries = stories.map((d) => {
+// A story can be prerendered at more than one address (its readable one and its old id one);
+// each page names its preferred address in <link rel="canonical">, so list only those, once.
+const urls = new Map();
+for (const d of stories) {
   const html = readFileSync(join(blogDir, d.name, 'index.html'), 'utf8');
+  const loc = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+  if (!loc) throw new Error(`blog/${d.name}/index.html has no canonical link`);
   const date = html.match(/property="article:published_time" content="(\d{4}-\d{2}-\d{2})/)?.[1];
-  return `  <url><loc>${esc(`${site}/blog/${encodeURIComponent(d.name)}`)}</loc>${date ? `<lastmod>${date}</lastmod>` : ''}</url>`;
-});
+  urls.set(loc, date);
+}
+const entries = [...urls].map(([loc, date]) => `  <url><loc>${esc(loc)}</loc>${date ? `<lastmod>${date}</lastmod>` : ''}</url>`);
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${site}/</loc></url>\n${entries.join('\n')}\n</urlset>\n`;
 writeFileSync(join(out, 'sitemap.xml'), xml);

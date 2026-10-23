@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, PLATFORM_ID, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
 import { Post } from '../../core/post.model';
 import { PostService } from '../../core/post.service';
 import { SeoService } from '../../core/seo.service';
@@ -19,14 +20,16 @@ export class StoryComponent {
   private readonly postService = inject(PostService);
   protected readonly images = inject(BrokenImages);
   private readonly seo = inject(SeoService);
+  private readonly router = inject(Router);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  /** Bound from the route (:id) via withComponentInputBinding. */
-  readonly id = input.required<string>();
+  /** Bound from the route (:key) via withComponentInputBinding: a slug, or an old-style post id. */
+  readonly key = input.required<string>();
 
   protected readonly all = signal<Post[]>(this.postService.snapshot() ?? []);
   protected readonly state = signal<'loading' | 'ready' | 'missing' | 'error'>(this.postService.snapshot() ? 'ready' : 'loading');
 
-  protected readonly index = computed(() => this.all().findIndex((p) => p.id === this.id()));
+  protected readonly index = computed(() => this.all().findIndex((p) => p.slug === this.key() || p.id === this.key()));
   protected readonly post = computed(() => this.all()[this.index()]);
   /** Posts are newest first, so the next index is the older story. */
   protected readonly older = computed(() => this.all()[this.index() + 1]);
@@ -45,10 +48,14 @@ export class StoryComponent {
       this.seo.set({
         title: `${p.title} · ${SITE.name}`,
         description: p.quote || summary(p.content) || SITE.description,
-        path: `/blog/${p.id}`,
+        path: `/blog/${p.slug}`,
         image: p.image || undefined,
         article: { headline: p.title, published: p.published, author: p.author },
       });
+      // An old link with the post id: show the same story at its readable address.
+      if (this.isBrowser && this.key() !== p.slug) {
+        void this.router.navigate(['/blog', p.slug], { replaceUrl: true });
+      }
     });
   }
 

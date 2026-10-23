@@ -1,5 +1,7 @@
 export interface Post {
   id: string;
+  /** Readable URL name made from the title, e.g. "a-day-with-apple". */
+  slug: string;
   title: string;
   /** Raw content from Firestore (plain text or simple HTML). */
   content: string;
