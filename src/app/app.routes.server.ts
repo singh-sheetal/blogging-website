@@ -10,9 +10,11 @@ import { PostService } from './core/post.service';
 export const serverRoutes: ServerRoute[] = [
   { path: '', renderMode: RenderMode.Prerender },
   {
-    path: 'blog/:id',
+    path: 'blog/:key',
     renderMode: RenderMode.Prerender,
-    getPrerenderParams: async () => (await inject(PostService).getPosts()).map((p) => ({ id: p.id })),
+    // Each story is built at its readable address and, so older links keep working, at its old id address too.
+    getPrerenderParams: async () =>
+      (await inject(PostService).getPosts()).flatMap((p) => [{ key: p.slug }, { key: p.id }]),
   },
   { path: '**', renderMode: RenderMode.Client },
 ];

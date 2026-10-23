@@ -2,6 +2,7 @@ import { getApps, initializeApp } from 'firebase/app';
 import { collection, getDocs, getFirestore, orderBy, query, Timestamp } from 'firebase/firestore';
 import { environment } from '../../environments/environment';
 import { Post } from './post.model';
+import { withSlugs } from './slug';
 
 let shared: Promise<Post[]> | null = null;
 
@@ -30,7 +31,7 @@ async function fetchWithRetry(): Promise<Post[]> {
 async function fetchPosts(): Promise<Post[]> {
   const db = getFirestore(getApps()[0] ?? initializeApp(environment.firebase));
   const snap = await getDocs(query(collection(db, 'blogs'), orderBy('published', 'desc')));
-  return snap.docs.map((d) => {
+  const posts = snap.docs.map((d) => {
     const data = d.data();
     const raw = data['published'];
     return {
@@ -43,4 +44,5 @@ async function fetchPosts(): Promise<Post[]> {
       published: raw instanceof Timestamp ? raw.toDate() : new Date(raw),
     };
   });
+  return withSlugs(posts);
 }

@@ -26,8 +26,8 @@ export class PostService {
     return this.cache;
   }
 
-  async getPost(id: string): Promise<Post | undefined> {
-    return (await this.getPosts()).find((p) => p.id === id);
+  async getPost(key: string): Promise<Post | undefined> {
+    return (await this.getPosts()).find((p) => p.slug === key || p.id === key);
   }
 
   private async fetch(): Promise<Post[]> {
