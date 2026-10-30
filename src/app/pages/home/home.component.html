@@ -45,7 +45,7 @@
     @if (latest(); as p) {
       <section class="wrap latest">
         <p class="eyebrow">Latest story</p>
-        <a class="feature" [routerLink]="['/blog', p.id]">
+        <a class="feature" [routerLink]="['/blog', p.slug]">
           @if (p.image && !images.isBroken(p.image)) {
             <img class="cover" [src]="p.image" alt="" width="1000" height="500" fetchpriority="high" (error)="images.mark(p.image)" />
           }
@@ -71,7 +71,7 @@
           </div>
           <div class="list">
             @for (p of y.posts; track p.id) {
-              <a class="row" [routerLink]="['/blog', p.id]">
+              <a class="row" [routerLink]="['/blog', p.slug]">
                 <div class="stamp s{{ $index % 3 }}" aria-hidden="true"><span>{{ monthShort(p.published) }}</span><span>{{ yearShort(p.published) }}</span></div>
                 <div class="txt">
                   <h4><span class="hl">{{ p.title }}</span></h4>

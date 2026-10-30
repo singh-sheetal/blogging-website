@@ -42,14 +42,14 @@
           <p class="eyebrow">Keep wandering</p>
           <div class="cards">
             @if (older(); as o) {
-              <a class="card" [routerLink]="['/blog', o.id]">
+              <a class="card" [routerLink]="['/blog', o.slug]">
                 <p class="eyebrow">← Older · {{ monthYearShort(o.published) }}</p>
                 <h2><span class="hl">{{ o.title }}</span></h2>
                 @if (o.quote) { <p class="q">{{ o.quote }}</p> }
               </a>
             }
             @if (newer(); as n) {
-              <a class="card" [routerLink]="['/blog', n.id]">
+              <a class="card" [routerLink]="['/blog', n.slug]">
                 <p class="eyebrow">Newer → {{ monthYearShort(n.published) }}</p>
                 <h2><span class="hl">{{ n.title }}</span></h2>
                 @if (n.quote) { <p class="q">{{ n.quote }}</p> }
